@@ -10,3 +10,8 @@ app.get('/', (req, res) => {
 app.listen( PORT, () => {
   console.log(`Listening to port ${PORT}`);
 });
+
+// close server when completed
+exports.closeServer = () => {
+  server.close();
+}
