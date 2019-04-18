@@ -95,4 +95,31 @@ describe("counting", () => {
 
 
 // Nested describe block
+describe("Array", () => {
 
+  let newArr;
+  beforeEach( ()=> {
+    newArr = [4,8,10];
+  });
+
+  describe("#unshift", () => {
+    it("adds an element to the begining of the array", () => {
+      newArr.unshift(12);
+      expect(newArr[0]).toBe(12);
+    });
+    it("returns the new length", () => {
+      expect(newArr.unshift(1000)).toBe(4);
+    });
+  });
+
+  describe("#push", () => {
+    it("adds element to the end of the array", () => {
+      newArr.push(14);
+      expect(newArr[newArr.length-1]).toBe(14);
+    });
+    it("returns new array length", () => {
+      expect(newArr.push(1000)).toBe(4);
+    });
+  });
+
+});
