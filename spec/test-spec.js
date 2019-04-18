@@ -4,6 +4,10 @@ const testing = require("../server/server");
 const localHostUrl = "http://localhost:5000/";
 
 
+// MATCHERS
+// toBe() & not.toBe(), toEqual(), toBeDefined(), toContain(), toBeCloseTo()
+
+
 describe("testing", () => {
   // first test is to ensure server HTTP request is returning a 200 / OK
   describe("GET /", () => {
@@ -120,6 +124,39 @@ describe("Array", () => {
     it("returns new array length", () => {
       expect(newArr.push(1000)).toBe(4);
     });
+  });
+
+});
+
+
+// Clock is available for time testing
+// syntax: jasmine.clock().install()
+// setTimeout
+describe("a simple setTimeout", () => {
+  let sample;
+
+  // install clock()
+  beforeEach(() => {
+    // creates spy
+    sample = jasmine.createSpy("sampleFunction");
+    jasmine.clock().install();
+  });
+
+  // uninstall clock()
+  afterEach(() => {
+    jasmine.clock().install();
+  });
+
+  it("only invoked after 1000 ms", () => {
+    setTimeout(() => {
+      sample();
+    }, 1000);
+
+    jasmine.clock().tick(999);
+    expect(sample).not.toHaveBeenCalled();
+
+    jasmine.clock().tick(1);
+    expect(sample).toHaveBeenCalled();
   });
 
 });
